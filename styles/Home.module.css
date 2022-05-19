@@ -1,8 +1,9 @@
 .container {
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
+  background-color: rgb(32, 32, 35);
 }
 
-.main {
+ /* .main {
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
@@ -13,7 +14,7 @@
 }
 
 .footer {
-  display: flex;
+ display: flex;
   flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
@@ -106,7 +107,7 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
-}
+} */
 
 @media (max-width: 600px) {
   .grid {

@@ -1,21 +1,24 @@
-import style from '../styles/Navbar.module.css'
+import styles from '../styles/Navbar.module.css'
 import Image from 'next/image'
 import darkModeMoonSvg from '../public/dark-mode-moon.svg'
 
 const Navbar = () => {
     return (
-        <nav className={style.navbar}>
-            <div className={style['navbar-container']}>
-                <div className={style['navbar-element-wrapper']}>
-                    <div className={style.name}>
+        <nav className={styles.navbar}>
+            <div className={styles['navbar-container']}>
+                <div className={styles['navbar-element-wrapper']}>
+                    <div className={styles.name}>
                         <h1>
                             Wu Wei
                         </h1>
                     </div>
-                    <div className={style['dark-mode-button-wrapper']}>
-                        <button className={style['dark-mode-button']}>
-                            <Image src={darkModeMoonSvg} />
-                        </button>
+                    <div className={styles['dark-mode-button-wrapper']}>
+                        <label className={styles.switch}>
+                            <input type="checkbox"/>
+                            <span className={`${styles.slider} ${styles.round}`}></span>
+                            <span className={styles.sun}></span>
+                            <span className={styles.moon}></span>
+                        </label>
                     </div>
                 </div>
             </div>

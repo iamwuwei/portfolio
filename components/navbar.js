@@ -1,6 +1,7 @@
 import styles from '../styles/Navbar.module.css'
 import Image from 'next/image'
 import darkModeMoonSvg from '../public/dark-mode-moon.svg'
+import snorlax from '../public/snorlax.png'
 
 const Navbar = () => {
     return (

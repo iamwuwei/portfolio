@@ -22,6 +22,9 @@
     height: auto;
     padding: 5px;
 }
+.snorlax{
+    width: 30px;
+    height: 30px;
 
 .name {
     color: aliceblue;
@@ -30,9 +33,11 @@
     height: auto;
 }
 
-.name h1{
+.name h1 {
     font-weight: bold;
     font-size: larger;
+    margin-left: 5px;
+}
 }
 
 .dark-mode-button-wrapper {

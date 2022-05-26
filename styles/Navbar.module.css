@@ -26,6 +26,7 @@
     width: 30px;
     height: 30px;
 
+}
 .name {
     color: aliceblue;
     display: flex;
@@ -38,12 +39,74 @@
     font-size: larger;
     margin-left: 5px;
 }
+
+.button-container {
+    display: flex;
+    align-items: center;
 }
 
-.dark-mode-button-wrapper {
+.button-wrapper {
     display: flex;
     align-items: center;
     height: auto;
+}
+
+.earth {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+/* Style The Dropdown Button */
+.dropbtn {
+    background-color: transparent;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(32, 32, 35);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 1px;
+    border-radius: 5px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: rgb(49, 49, 52)
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    
 }
 
 .switch {
@@ -52,6 +115,7 @@
     width: 50px;
     height: 26px;
 }
+
 .switch input {
     opacity: 0;
     width: 0;
@@ -109,7 +173,8 @@ input:checked+.slider:before {
     width: 20px;
     height: 20px;
 }
-.sun:before{
+
+.sun:before {
     content: "";
     background-image: url(../public/dark-mode-sun.svg);
     position: absolute;
@@ -118,11 +183,13 @@ input:checked+.slider:before {
     top: 3.8px;
     left: 4px;
 }
+
 .moon {
     width: 18px;
     height: 18px;
 }
-.moon:before{
+
+.moon:before {
     content: "";
     background-image: url(../public/dark-mode-moon.svg);
     position: absolute;

@@ -1,18 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import styles from '../styles/snorlax.module.scss'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { loadGLTFModel } from './loadGLTFModel.js'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 function easeOutCirc(x) {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 const Snorlax = () => {
   const refContainer = useRef()
-  const [loading, setLoading] = useState(true)
+  const [containerHeight, setContainerHeight] = useState(450)
   const [renderer, setRenderer] = useState()
   const [_camera, setCamera] = useState()
+  const [scale, setScale] = useState(1)
   const [target] = useState(new THREE.Vector3(0, 3, 0))
   const [initialCameraPosition] = useState(
     new THREE.Vector3(
@@ -25,6 +24,7 @@ const Snorlax = () => {
     const { current: container } = refContainer
     if (container && renderer) {
       const scW = container.clientWidth
+      setContainerHeight(scW / scale)
       const scH = container.clientHeight
 
       renderer.setSize(scW, scH)
@@ -45,8 +45,8 @@ const Snorlax = () => {
       renderer.outputEncoding = THREE.sRGBEncoding
       container.appendChild(renderer.domElement)
       setRenderer(renderer)
-
-      const camera = new THREE.PerspectiveCamera(45, scW / scH, 0.1, 10000);
+      setScale(scW/scH)
+      const camera = new THREE.PerspectiveCamera(45, scale, 0.1, 10000);
       camera.position.copy(initialCameraPosition)
       setCamera(camera)
 
@@ -61,7 +61,6 @@ const Snorlax = () => {
 
       loadGLTFModel(scene, '/snorlax.glb').then(() => {
         animate()
-        setLoading(false)
       })
 
       let req = null
@@ -89,7 +88,7 @@ const Snorlax = () => {
       }
 
       return () => {
-        // cancelAnimationFrame(req)
+        cancelAnimationFrame(req)
         renderer.dispose()
       }
     }
@@ -103,7 +102,7 @@ const Snorlax = () => {
   }, [renderer, handleWindowResize])
 
   return (
-    <div className={styles.snorlax} ref={refContainer}>{console.log(loading)}</div>
+    <div ref={refContainer} style={{'height': `${containerHeight}px` }} ></div>
   )
 }
 

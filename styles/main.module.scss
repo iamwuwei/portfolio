@@ -11,14 +11,12 @@ $breakpoints: (
 
 .main {
     color: white;
-    /* padding-top: 56px; */
+    padding: 0 16px;
     min-height: 100vh;
     display: flex;
     justify-content: center;
 
     .container {
-        padding: 0 16px;
-
         .profile {
             h1 {
                 font-weight: bold;

@@ -1,10 +1,12 @@
 import styles from '../styles/main.module.scss'
 import SkillBar from './skillbar'
+import Snorlax from './snorlax'
 
 const Main = () => {
     return (
         <main className={styles.main}>
             <div className={styles.container}>
+                <Snorlax />
                 <div className={styles.profile}>
 
                     <h1>

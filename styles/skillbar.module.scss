@@ -20,6 +20,15 @@
        div{
            height: 100%;
            border-radius: 5px;
+
+           animation-name: load;
+           animation-duration: 4s;
+           animation-timing-function: ease;
        }
+
+       @keyframes load {
+        from {width:0%}
+        to {width: var(percentage)}
+      }
    }
 }

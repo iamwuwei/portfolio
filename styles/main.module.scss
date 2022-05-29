@@ -1,0 +1,57 @@
+$breakpoints: (
+    'sm': 'screen and (max-width: 767px)',
+    'md': 'screen and (min-width: 768px)',
+    ) !default;
+
+@mixin mq($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+.main {
+    color: white;
+    /* padding-top: 56px; */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    .container {
+        padding: 0 16px;
+
+        .profile {
+            h1 {
+                font-weight: bold;
+                font-size: xx-large;
+                padding: 5px 0;
+            }
+
+            h2 {
+                font-weight: lighter;
+                padding: 5px 0;
+            }
+        }
+
+        section {
+            h1{
+                text-decoration: solid underline rgb(49, 49, 52) 4px;
+                text-underline-offset: 5px;
+                font-size: larger;
+                font-weight: 700;
+                padding: 10px 0;
+            }
+            article{
+                padding: 5px 20px;
+                white-space: pre-line;
+            }
+        }
+
+        @include mq() {
+            max-width: 732px;
+        }
+
+        @include mq(sm) {
+            width: 100%
+        }
+    }
+}

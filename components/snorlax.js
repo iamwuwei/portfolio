@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import styles from '../styles/snorlax.module.scss'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { loadGLTFModel } from './loadGLTFModel.js'
@@ -45,7 +46,7 @@ const Snorlax = () => {
       renderer.outputEncoding = THREE.sRGBEncoding
       container.appendChild(renderer.domElement)
       setRenderer(renderer)
-      setScale(scW/scH)
+      setScale(scW / scH)
       const camera = new THREE.PerspectiveCamera(45, scale, 0.1, 10000);
       camera.position.copy(initialCameraPosition)
       setCamera(camera)
@@ -101,8 +102,37 @@ const Snorlax = () => {
     }
   }, [renderer, handleWindowResize])
 
+  const iconDir = '/icon/icon-'
+  const icons = [iconDir + 'aws.png', iconDir + 'css3.png', iconDir + 'docker.png', iconDir + 'html.png',
+  iconDir + 'javascript.png', iconDir + 'nginx.png', iconDir + 'node-js.png', iconDir + 'python.png',
+  iconDir + 'react.png', iconDir + 'redux.png', iconDir + 'sass.png', iconDir + 'swift.png',
+  iconDir + 'swiftUI.png', iconDir + 'visual-studio.png', iconDir + 'firebase.png']
+
+  useEffect(() => {
+    setInterval(creatSnow, 200);
+  }, [])
+  
+  const creatSnow = () => {
+    const { current: container } = refContainer
+    const obj = document.createElement('img')
+    obj.classList.add(styles.snow)
+    let left = Math.random() * container.clientWidth;
+    if (left + 30 > container.clientWidth)
+      left = container.clientWidth - 30
+    obj.style.left = left + 'px'
+    obj.style.opacity = Math.random();
+    obj.style.animationDuration = Math.random() * 3 + 2 + 's'
+    obj.src = icons[Math.floor(Math.random() * icons.length)]
+
+    container.appendChild(obj)
+
+    setTimeout(() => {
+      obj.remove();
+    }, Math.random() * (8000 - 3000) + 3000)
+  }
+
   return (
-    <div ref={refContainer} style={{'height': `${containerHeight}px` }} ></div>
+    <div ref={refContainer} style={{ 'height': `${containerHeight}px`, position: 'relative' }}></div>
   )
 }
 

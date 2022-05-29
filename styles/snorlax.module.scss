@@ -1,0 +1,22 @@
+$--height: 400px;
+
+.snow {
+    background-color: transparent;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -30px;
+    z-index: 100;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 90%;
+    }
+}

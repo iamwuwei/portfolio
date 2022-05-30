@@ -108,10 +108,15 @@ const Snorlax = () => {
   iconDir + 'react.png', iconDir + 'redux.png', iconDir + 'sass.png', iconDir + 'swift.png',
   iconDir + 'swiftUI.png', iconDir + 'visual-studio.png', iconDir + 'firebase.png']
 
+  const linkIcons = ['/linkedin.svg', '/github.gif']
+  const links = ['//www.linkedin.com/in/iamwuwei', '//www.github.com/iamwuwei']
+
   useEffect(() => {
-    setInterval(creatSnow, 200);
+    setInterval(creatSnow, 300);
+    setInterval(createLinkSnow, 1000);
+
   }, [])
-  
+
   const creatSnow = () => {
     const { current: container } = refContainer
     const obj = document.createElement('img')
@@ -129,6 +134,36 @@ const Snorlax = () => {
     setTimeout(() => {
       obj.remove();
     }, Math.random() * (8000 - 3000) + 3000)
+  }
+
+  const createLinkSnow = () => {
+    const { current: container } = refContainer
+    const obj = document.createElement('a')
+    obj.classList.add(styles.linkSnowContainer)
+
+    const img = document.createElement('img')
+    img.classList.add(styles.linkImg)
+    obj.appendChild(img)
+
+    const clickMe = document.createElement('h1')
+    clickMe.innerHTML = 'Click Me!'
+    clickMe.classList.add(styles.clickme)
+    obj.appendChild(clickMe)
+
+    let left = Math.random() * container.clientWidth;
+    if (left + 100 > container.clientWidth)
+      left = container.clientWidth - 100
+    obj.style.left = left + 'px'
+    obj.style.opacity = Math.random()*3;
+    obj.style.animationDuration = Math.random() * 10 + 2 + 's'
+    const index = Math.floor(Math.random() * linkIcons.length)
+    img.src = linkIcons[index]
+    obj.href = links[index]
+    container.appendChild(obj)
+
+    setTimeout(() => {
+      obj.remove();
+    }, 7000)
   }
 
   return (

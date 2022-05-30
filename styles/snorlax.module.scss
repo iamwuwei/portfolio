@@ -22,7 +22,7 @@ $--height: 400px;
     position: absolute;
     top: -30px;
     z-index: 1000;
-    animation: fall linear forwards, shake 1s linear;
+    animation: fall linear forwards, shake 1s linear infinite;
     text-decoration: none;
 
     .linkImg {
@@ -59,13 +59,14 @@ $--height: 400px;
     20%,
     80% {
         transform: translate3d(3px, 0, 0);
+        transform: scale(1.5);
     }
 
     30%,
     50%,
     70% {
         transform: translate3d(-6px, 0, 0);
-        transform: scale(1.5);
+        
     }
 
     40%,

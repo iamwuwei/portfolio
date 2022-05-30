@@ -113,7 +113,7 @@ const Snorlax = () => {
 
   useEffect(() => {
     setInterval(creatSnow, 300);
-    setInterval(createLinkSnow, 1000);
+    setInterval(createLinkSnow, 1500);
 
   }, [])
 
@@ -154,7 +154,7 @@ const Snorlax = () => {
     if (left + 100 > container.clientWidth)
       left = container.clientWidth - 100
     obj.style.left = left + 'px'
-    obj.style.opacity = Math.random()*3;
+    obj.style.opacity = Math.random() + 10;
     obj.style.animationDuration = Math.random() * 10 + 2 + 's'
     const index = Math.floor(Math.random() * linkIcons.length)
     img.src = linkIcons[index]

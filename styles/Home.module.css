@@ -1,18 +1,4 @@
-.container {
-  /* padding: 0 2rem; */
-  background-color: rgb(32, 32, 35);
-}
-
- /* .main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
+/*
 .footer {
  display: flex;
   flex: 1;
@@ -108,10 +94,3 @@
   height: 1em;
   margin-left: 0.5rem;
 } */
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}

@@ -1,0 +1,99 @@
+$breakpoints: (
+    'sm': 'screen and (max-width: 767px)',
+    'md': 'screen and (min-width: 768px)',
+    ) !default;
+
+@mixin mq($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+.workContainer{
+    height:300px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgb(49, 49, 52);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @include mq(sm) {
+        height: auto;
+        padding: 15px 0;
+    }
+}
+.work {
+    display: flex;
+    justify-content: left;
+    position: relative;
+    width: 80%;
+    height: 80%;
+
+    .pic {
+        position: relative;
+        width: 52%;
+        height: 100%;
+        background-color: aqua;
+        border-radius: 10px;
+        margin-right: 20px;
+
+        @include mq(sm) {
+            width: 90%;
+            height: 250px;
+            margin: auto;
+        }
+    }
+
+    h1{
+        text-decoration: none !important;
+        font-weight: 400;
+        padding: 0% !important;
+    }
+    .detail{
+        display: flex;
+        flex-direction: column;  
+        justify-content: space-between;
+        .description{
+            width: 100%;
+
+            @include mq(sm) {
+                margin-top: 5px;
+            }
+        }
+
+        .buttonRow{
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: end;
+            .btn {
+                text-decoration: none;
+                color: white;
+                background-color: rgb(122, 136, 246);
+                width: 100px;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+            }
+            @include mq(sm) {
+                width: 90%;
+                margin-top: 5px;
+                align-items: center;
+            }
+        }
+
+        @include mq(sm) {
+            width: 90%;
+            margin: auto;
+            margin-top: 10px;
+        }
+    }
+
+    @include mq(sm) {
+        flex-direction: column;
+        width: 90%;
+    }
+}

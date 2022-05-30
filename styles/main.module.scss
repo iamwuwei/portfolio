@@ -41,6 +41,11 @@ $breakpoints: (
             article{
                 padding: 5px 20px;
                 white-space: pre-line;
+                text-decoration-line: underline;
+                text-decoration-color: rgb(49, 49, 52
+                );
+            text-decoration-thickness: 4px;
+            text-underline-offset: 5px;
             }
         }
 

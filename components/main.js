@@ -59,11 +59,11 @@ const Main = () => {
                             </SwiperSlide>
                         </Swiper>
                     </article>
-                    <div className={`${styles.buttonRow} ${styles.portfolio}`}>
+                    {/* <div className={`${styles.buttonRow} ${styles.portfolio}`}>
                         <Link href="#">
-                            <a className={styles.btn}>{`Portfolios ->`}</a>
+                            <a className={styles.btn}>{`Mores ->`}</a>
                         </Link>
-                    </div>
+                    </div> */}
                 </section>
                 <section>
                     <h1>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
 import Image from 'next/image'
 import earthSvg from '../public/earth-globe.svg'
@@ -21,9 +22,15 @@ const Navbar = () => {
                             <div className={styles.dropdown}>
                                 <Image src={earthSvg} className={styles.dropbtn}></Image>
                                 <div className={styles['dropdown-content']}>
-                                    <a href="#">日本語</a>
-                                    <a href="#">English</a>
-                                    <a href="#">繁體中文</a>
+                                    <Link href="/" locale="ja">
+                                        <a>日本語</a>
+                                    </Link>
+                                    <Link href="/" locale="en">
+                                        <a>English</a>
+                                    </Link>
+                                    <Link href="/" locale="zh">
+                                        <a>繁體中文</a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

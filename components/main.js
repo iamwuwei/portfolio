@@ -28,7 +28,7 @@ const Main = ({content}) => {
                     <h1>
                         About Me
                     </h1>
-                    <article>
+                    <article className={styles.about}>
                         {`${content.about.content}`}
                     </article>
                 </section>

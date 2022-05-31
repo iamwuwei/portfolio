@@ -1,29 +1,37 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Navbar from '../components/navbar'
+import Main from '../components/main'
 import Footer from '../components/footer'
+
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import upArrow from '../public/up-arrow.png'
+
+export default function Home({data}) {
   return (
     <>
       <Head>
         <title>Home App</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       <div className={styles.container}>
         <Navbar />
-
-      <main className={styles.main}>
-      </main>
-
+        <Main content={data}/>
       </div>
       <Footer />
+      <a href="#top" className={styles.upArrow}>
+        <Image src={upArrow} />
+      </a>
     </>
   )
+}
+
+// This gets called on every request
+export async function getServerSideProps({ locale }) {
+  // Fetch data from external API
+  const res = await fetch(`http://localhost:3002/home/${locale}`)
+  const data = await res.json()
+
+  // Pass data to the page via props
+  return { props: { data } }
 }

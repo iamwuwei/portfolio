@@ -11,14 +11,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Main = () => {
+const Main = ({content}) => {
     return (
         <main className={styles.main}>
             <div className={styles.container}>
                 <Snorlax />
                 <div className={styles.profile}>
                     <h1>
-                        Wu Wei
+                       {`${content.profile.lastName} ${content.profile.firstName}`}
                     </h1>
                     <h2>
                         Software Engineer
@@ -29,8 +29,7 @@ const Main = () => {
                         About Me
                     </h1>
                     <article>
-                        I'm a full-stack software engineer based in Japan, Tokyo now. <br />
-                        love to solve real-life problems with code.
+                        {`${content.about.content}`}
                     </article>
                 </section>
                 <section>
@@ -44,6 +43,7 @@ const Main = () => {
                             navigation
                             autoplay={{ delay: 5000 }}
                             pagination={{ clickable: true }}
+                            style={{borderRadius: `10px`}}
                         >
                             <SwiperSlide>
                                 <Work title={`react project`}/>
@@ -79,10 +79,7 @@ const Main = () => {
                     </article>
                     <div className={`${styles.buttonRow} ${styles.resume}`}>
                         <Link href="#">
-                            <a className={styles.btn}>{`Portfolios ->`}</a>
-                        </Link>
-                        <Link href="#">
-                            <a className={styles.btn}>{`Portfolios ->`}</a>
+                            <a className={styles.btn}>{`Download CV ->`}</a>
                         </Link>
                     </div>
                 </section>

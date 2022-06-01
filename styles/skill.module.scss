@@ -1,0 +1,112 @@
+$breakpoints: (
+    'sm': 'screen and (max-width: 767px)',
+    'md': 'screen and (min-width: 768px)',
+    ) !default;
+
+@mixin mq($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+.skillContainer {
+    display: flex;
+    width: 100%;
+
+    .skill {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        .navigationContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 200px;
+            position: relative;
+            .navigation {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                background-color: #313134;
+                border-radius: 10px;
+
+                height: 100%;
+
+                .segment {
+                    background-color: white;
+                    border: none;
+                    border-radius: 10px;
+                    padding: 5px;
+                    color: #ffffff;
+                    background-color: transparent;
+                    cursor: pointer;
+
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+
+                    .wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        height: 100%;
+
+                        .img {
+                            display: flex;
+                            align-items: center;
+                            width: 40px;
+                            height: 40px;
+
+                            @include mq(sm) {
+                                margin: 0;
+                            }
+                        }
+
+                        h3 {
+                            display: flex;
+                            align-items: center;
+                            height: 100%;
+
+                            @include mq(sm) {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .navigation::before {
+                content: "";
+                background: #5465ff;
+                border-radius: 8px;
+                width: 45px;
+                height: var(--highlight-height);
+                transform: translateY(var(--highlight-y-pos));
+                position: absolute;
+                top: 2.5px;
+                bottom: 2.5px;
+                left: 2.5px;
+                z-index: 0;
+            }
+
+            /* Only allow transitions once component is ready */
+            .navigation::before {
+                transition: transform 0.3s ease, height 0.3s ease;
+            }
+        }
+    }
+
+    .skillbars {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-left: 10px;
+    }
+}

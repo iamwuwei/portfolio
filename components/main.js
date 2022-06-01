@@ -70,12 +70,7 @@ const Main = ({content}) => {
                         Skills
                     </h1>
                     <article>
-                        <SkillBar title={'HTML/CSS'} percentage={90} />
-                        <SkillBar title={'HTML/CSS'} percentage={40} />
-                        <SkillBar title={'HTML/CSS'} percentage={40} />
-                        <SkillBar title={'HTML/CSS'} percentage={40} />
-                        <SkillBar title={'HTML/CSS'} percentage={40} />
-                        <SkillBar title={'HTML/CSS'} percentage={40} />
+                        <Skill />
                     </article>
                     <div className={`${styles.buttonRow} ${styles.resume}`}>
                         <Link href="#">

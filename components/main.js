@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import styles from '../styles/main.module.scss'
 import SkillBar from './skillbar'
@@ -10,15 +11,29 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import Skill from './skill'
 
-const Main = ({content}) => {
+const Main = ({ content }) => {
+    const refSlideContainer = useRef()
+    const refSkillContainer = useRef()
+    const [isSlideContainerVisible, setSlideContainerVisible] = useState(false)
+    let observer = null
+    useEffect(() => {
+        observer = new IntersectionObserver(([entry]) => setSlideContainerVisible(entry.isIntersecting))
+        observer.observe(refSlideContainer.current)
+        // Remove the observer as soon as the component is unmounted
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
+
     return (
         <main className={styles.main}>
             <div className={styles.container}>
                 <Snorlax />
                 <div className={styles.profile}>
                     <h1>
-                       {`${content.profile.lastName} ${content.profile.firstName}`}
+                        {`${content.profile.lastName} ${content.profile.firstName}`}
                     </h1>
                     <h2>
                         Software Engineer
@@ -36,28 +51,29 @@ const Main = ({content}) => {
                     <h1>
                         Works
                     </h1>
-                    <article className={styles.works}>
-                        <Swiper
-                            modules={[Navigation, Pagination]}
+                    <article className={styles.works} ref={refSlideContainer}>
+                        {isSlideContainerVisible && <Swiper
+                            modules={[Navigation, Pagination, Autoplay]}
                             slidesPerView={1}
                             navigation
-                            autoplay={{ delay: 5000 }}
+                            autoplay={{ delay: 3000 }}
                             pagination={{ clickable: true }}
-                            style={{borderRadius: `10px`}}
+                            style={{ borderRadius: `10px` }}
                         >
                             <SwiperSlide>
-                                <Work title={`react project`}/>
+                                <Work title={`react project`} />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <Work title={`react project`}/>
+                                <Work title={`react project`} />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <Work title={`react project`}/>
+                                <Work title={`react project`} />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <Work title={`react project`}/>
+                                <Work title={`react project`} />
                             </SwiperSlide>
                         </Swiper>
+                        }
                     </article>
                     {/* <div className={`${styles.buttonRow} ${styles.portfolio}`}>
                         <Link href="#">

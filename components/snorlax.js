@@ -8,6 +8,7 @@ function easeOutCirc(x) {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 const Snorlax = () => {
+  const [isContainerVisible, setContainerVisible] = useState(false)
   const refContainer = useRef()
   const [containerHeight, setContainerHeight] = useState(450)
   const [renderer, setRenderer] = useState()
@@ -111,13 +112,31 @@ const Snorlax = () => {
   const linkIcons = ['/linkedin.svg', '/github.gif']
   const links = ['//www.linkedin.com/in/iamwuwei', '//www.github.com/iamwuwei']
 
+  let observer = null
+  const [isSnowing, setSnowing] = useState()
+  const [isLinkSnowing, setLinkSnowing] = useState()
   useEffect(() => {
-    setInterval(creatSnow, 300);
-    setInterval(createLinkSnow, 1500);
-
+    observer = new IntersectionObserver(([entry]) => setContainerVisible(entry.isIntersecting))
+    observer.observe(refContainer.current)
+    // Remove the observer as soon as the component is unmounted
+    return () => { observer.disconnect() }
   }, [])
 
-  const creatSnow = () => {
+  useEffect(() => {
+    if (isContainerVisible) {
+      setSnowing(setInterval(createSnow, 300));
+      setLinkSnowing(setInterval(createLinkSnow, 1500));
+
+    }
+    else {
+      if(isSnowing)
+        clearInterval(isSnowing)
+      if(isLinkSnowing)
+        clearInterval(isLinkSnowing)
+    }
+  }, [isContainerVisible])
+
+  const createSnow = () => {
     const { current: container } = refContainer
     const obj = document.createElement('img')
     obj.classList.add(styles.snow)

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef  } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import styles from '../styles/skill.module.scss'
 
@@ -7,8 +7,9 @@ import backEndPng from '../public/backend-development.png'
 import appPng from '../public/app-development.png'
 import SkillBar from './skillbar'
 
-const Skill = () => {
+const Skill = ({ data }) => {
     const [segment, setSegment] = useState("frontend")
+    const [skills, setSkills] = useState(data.frontend)
     const fontendSegmentRef = useRef()
     const backendSegmentRef = useRef()
     const appSegmentRef = useRef()
@@ -37,20 +38,23 @@ const Skill = () => {
     useEffect(() => {
         if (segment === 'frontend') {
             setOffset(fontendSegmentRef)
+            setSkills(data.frontend)
         }
         else if (segment === 'backend') {
             setOffset(backendSegmentRef)
+            setSkills(data.backend)
         }
         else if (segment === 'app') {
             setOffset(appSegmentRef)
+            setSkills(data.app)
         }
     }, [segment])
 
-    const setOffset = (activeSegmentRef) =>{
+    const setOffset = (activeSegmentRef) => {
         const { offsetHeight, offsetTop } = activeSegmentRef.current;
         const { style } = controlRef.current;
-    
-        style.setProperty("--highlight-height", `${offsetHeight-5}px`);
+
+        style.setProperty("--highlight-height", `${offsetHeight - 5}px`);
         style.setProperty("--highlight-y-pos", `${offsetTop}px`);
     }
     return (
@@ -89,8 +93,11 @@ const Skill = () => {
                     </div>
                 </div>
                 <div className={styles.skillbars}>
-                    <SkillBar title={'HTML/CSS'} percentage={40} />
-                    <SkillBar title={'HTML/CSS'} percentage={40} />
+                    {
+                        skills.map((skill, i) => {
+                            return <SkillBar key={i} title={skill.title} percentage={skill.percentage} />
+                        })
+                    }
                 </div>
             </div>
         </div>

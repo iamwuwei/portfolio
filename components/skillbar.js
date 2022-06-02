@@ -1,6 +1,11 @@
+import { useEffect, useRef } from 'react'
 import styles from '../styles/skillbar.module.scss'
 const SkillBar = ({ title, percentage }) => {
+    const progressRef = useRef()
 
+    useEffect(()=>{
+
+    }, [])
     return (
         <div className={styles.skillbar}>
             <div className={styles.title}>
@@ -8,7 +13,7 @@ const SkillBar = ({ title, percentage }) => {
                 <h1>{percentage}%</h1>
             </div>
             <div className={styles.bar}>
-                <div style={{ backgroundColor: 'blue', width: `${percentage}%`}} className="animation"></div>
+                <div style={{width: `${percentage}%`}} className="animation" ref={progressRef}></div>
             </div>
         </div>
     )

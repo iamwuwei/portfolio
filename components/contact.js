@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from '../styles/contact.module.scss'
 
 const Contact = () => {
+    const messageRef = useRef()
+    const contactContainerRef = useRef()
+    const [isMessageSection, setMessageSection] = useState(false)
+    const [isContactSection, setContactSection] = useState(false)
     const [form, setForm] = useState({ "name": "", "email": "", "message": "" })
     const [loading, setLoading] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        if(!validateInput()){
+        if (!validateInput()) {
             await setTimeout(() => {
                 alert(alertMsg)
                 setLoading(false)
@@ -60,16 +64,30 @@ const Contact = () => {
         }
         if (form.email.length <= 0) {
             setAlertMsg(alertMsg += "please input your email.\n")
-        } 
+        }
         if (form.message.length <= 0) {
             setAlertMsg(alertMsg += "please input message.\n")
         }
-        if(alertMsg !== "")
+        if (alertMsg !== "")
             return false
         return true
     }
+
+    useEffect(() => {
+        var observer = new IntersectionObserver(([entry]) => setMessageSection(entry.isIntersecting))
+        observer.observe(messageRef.current)
+
+        var observer2 = new IntersectionObserver(([entry]) => setContactSection(entry.isIntersecting))
+        observer2.observe(contactContainerRef.current)
+        // Remove the observer as soon as the component is unmounted
+        return () => {
+            observer.disconnect()
+            observer2.disconnect()
+        }
+    }, [])
+
     return (
-        <div className={styles.contactContainer}>
+        <div className={styles.contactContainer} ref={contactContainerRef}>
             <form onSubmit={handleSubmit}>
                 <div className={styles.contact} >
                     <h3>Your Name</h3>
@@ -79,7 +97,7 @@ const Contact = () => {
                     <input type="text" placeholder='Email' name="email" value={form.email} onChange={handleFormChange}>
                     </input>
                     <h3>Message</h3>
-                    <textarea placeholder='Message' name="message" value={form.message} onChange={handleFormChange}>
+                    <textarea placeholder='Message' name="message" value={form.message} onChange={handleFormChange} ref={messageRef}>
                     </textarea>
                     <div className={styles.submitContainer}>
                         <input type="submit" disabled={loading} className={`${styles.submitBtn} ${loading ? styles.loading : ''}`} value="Send Message"></input>
@@ -90,6 +108,16 @@ const Contact = () => {
                     </div>
                 </div>
             </form>
+
+            <div className={styles.hello} style={{ display: `${isContactSection ? 'flex' : 'none'}` }}>
+                <div className={`${styles.message} ${styles.messageReceiver}`} style={{ display: `${isContactSection ? 'flex' : 'none'}` }}>
+                    <div className={styles.messageBody}>Hello</div>
+                </div>
+
+                <div className={`${styles.message} ${styles.messageReceiver}`} style={{ display: `${isMessageSection ? 'flex' : 'none'}` }}>
+                    <div className={styles.messageBody}>New projects, freelance inquiry or even a coffee</div>
+                </div>
+            </div>
         </div>
     )
 }

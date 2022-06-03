@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from '../styles/contact.module.scss'
 
-const Contact = () => {
+const Contact = ({data}) => {
     const messageRef = useRef()
     const contactContainerRef = useRef()
     const [isMessageSection, setMessageSection] = useState(false)
@@ -111,11 +111,11 @@ const Contact = () => {
 
             <div className={styles.hello} style={{ display: `${isContactSection ? 'flex' : 'none'}` }}>
                 <div className={`${styles.message} ${styles.messageReceiver}`} style={{ display: `${isContactSection ? 'flex' : 'none'}` }}>
-                    <div className={styles.messageBody}>Hello</div>
+                    <div className={styles.messageBody}>{data.wellcomeMsg}</div>
                 </div>
 
                 <div className={`${styles.message} ${styles.messageReceiver}`} style={{ display: `${isMessageSection ? 'flex' : 'none'}` }}>
-                    <div className={styles.messageBody}>New projects, freelance inquiry or even a coffee</div>
+                    <div className={styles.messageBody}>{data.msg}</div>
                 </div>
             </div>
         </div>

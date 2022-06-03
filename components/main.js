@@ -99,7 +99,7 @@ const Main = ({ content }) => {
                         Contact Me
                     </h1>
                     <article>
-                        <Contact />
+                        <Contact data={content.contact}/>
                     </article>
                 </section>
             </div>

@@ -12,6 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Skill from './skill'
+import Contact from './contact'
 
 const Main = ({ content }) => {
     const refSlideContainer = useRef()
@@ -86,13 +87,20 @@ const Main = ({ content }) => {
                         Skills
                     </h1>
                     <article>
-                        <Skill />
+                        <Skill data={content.skill}/>
                     </article>
-                    <div className={`${styles.buttonRow} ${styles.resume}`}>
+                    {/* <div className={`${styles.buttonRow} ${styles.resume}`}>
                         <Link href="#">
                             <a className={styles.btn}>{`Download CV ->`}</a>
                         </Link>
-                    </div>
+                    </div> */}
+                <section>
+                    <h1>
+                        Contact Me
+                    </h1>
+                    <article>
+                       <Contact />
+                    </article>
                 </section>
             </div>
         </main>

@@ -1,0 +1,111 @@
+.contactContainer {
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px 0px;
+    background-color: rgb(49, 49, 52);
+    position: relative;
+
+    .contact {
+        width: 70%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            color: white;
+            font-size: medium;
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 12px 30px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: transparent;
+            color: #5465ff;
+            font-size: medium;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        textarea {
+            padding: 12px 30px;
+            height: 200px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: transparent;
+            color: #5465ff;
+            font-size: large;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        .submitContainer {
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+
+            .submitBtn {
+                border: none;
+                background-color: #5465ff;
+                color: white;
+                border-radius: 10px;
+            }
+
+            .loading {
+                width: 0px;
+                height: 0px;
+                padding: 0px;
+                -webkit-transition: all 0.2s linear;
+                -moz-transition: all 0.2s linear;
+                transition: all 0.2s linear;
+            }
+
+            .spinner {
+                animation: rotate 2s linear infinite;
+                margin: 0 0 0 -25px;
+                width: 30px;
+                height: 30px;
+
+                & .path {
+                    stroke: hsl(210, 70, 75);
+                    stroke-linecap: round;
+                    animation: dash 1.5s ease-in-out infinite;
+                }
+
+            }
+
+            @keyframes rotate {
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @keyframes dash {
+                0% {
+                    stroke-dasharray: 1, 150;
+                    stroke-dashoffset: 0;
+                }
+
+                50% {
+                    stroke-dasharray: 90, 150;
+                    stroke-dashoffset: -35;
+                }
+
+                100% {
+                    stroke-dasharray: 90, 150;
+                    stroke-dashoffset: -124;
+                }
+            }
+
+        }
+    }
+}

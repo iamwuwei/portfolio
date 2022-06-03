@@ -1,111 +1,226 @@
+$breakpoints: (
+    'sm': 'screen and (max-width: 767px)',
+    'md': 'screen and (min-width: 768px)',
+    ) !default;
+
+@mixin mq($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
 .contactContainer {
     width: 100%;
     border-radius: 10px;
     padding: 20px 0px;
-    background-color: rgb(49, 49, 52);
-    position: relative;
+    background-color: var(--color-sub-background);
 
-    .contact {
-        width: 70%;
-        margin: auto;
+.contact {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        color: var(--color-primary-font);
+        font-size: medium;
+        margin-top: 10px;
+    }
+
+    input {
+        padding: 12px 30px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid var(--color-primary-border);
+        border-radius: 4px;
+        background-color: transparent;
+        color: var(--color-primary-button);
+        font-size: medium;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    textarea {
+        padding: 12px 30px;
+        height: 200px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 2px solid var(--color-primary-border);;
+        border-radius: 4px;
+        background-color: transparent;
+        color: var(--color-primary-button);
+        font-size: large;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+
+    .submitContainer {
         display: flex;
-        flex-direction: column;
+        justify-content: flex-end;
+        position: relative;
 
-        h3 {
-            color: white;
-            font-size: medium;
-            margin-top: 10px;
+        .submitBtn {
+            border: none;
+            background-color: var(--color-primary-button);
+            color: var(--color-primary-font);
+            border-radius: 10px;
         }
 
-        input {
-            padding: 12px 30px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            background-color: transparent;
-            color: #5465ff;
-            font-size: medium;
+        .loading {
+            width: 0px;
+            height: 0px;
+            padding: 0px;
+            -webkit-transition: all 0.2s linear;
+            -moz-transition: all 0.2s linear;
+            transition: all 0.2s linear;
         }
 
-        input:focus {
-            outline: none;
+        .spinner {
+            animation: rotate 2s linear infinite;
+            margin: 0 0 0 -25px;
+            width: 30px;
+            height: 30px;
+
+            & .path {
+                stroke: hsl(210, 70, 75);
+                stroke-linecap: round;
+                animation: dash 1.5s ease-in-out infinite;
+            }
+
         }
 
-        textarea {
-            padding: 12px 30px;
-            height: 200px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            background-color: transparent;
-            color: #5465ff;
-            font-size: large;
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
-        textarea:focus {
-            outline: none;
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1, 150;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -35;
+            }
+
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -124;
+            }
         }
 
-        .submitContainer {
-            display: flex;
-            justify-content: flex-end;
-            position: relative;
+    }
+}
 
-            .submitBtn {
-                border: none;
-                background-color: #5465ff;
-                color: white;
-                border-radius: 10px;
-            }
+.hello {
+    position: fixed;
+    left: 5%;
+    bottom: 70px;
+    max-width: 50%;
+    flex-direction: column;
+    z-index: 500;
+    @include mq(sm) {
+        left: 3%;
+    }
 
-            .loading {
-                width: 0px;
-                height: 0px;
-                padding: 0px;
-                -webkit-transition: all 0.2s linear;
-                -moz-transition: all 0.2s linear;
-                transition: all 0.2s linear;
-            }
+    .message {
+        display: flex;
+        position: relative;
+        padding: 3px 10px;
+        border-radius: 10px;
+        background-color: rgb(0, 86, 87);
+        color: rgb(224, 224, 226);
+        margin-bottom: 10px;
+        width: fit-content;
+        animation: shake 0.5s linear, scale 0.3s linear;
+    }
 
-            .spinner {
-                animation: rotate 2s linear infinite;
-                margin: 0 0 0 -25px;
-                width: 30px;
-                height: 30px;
+    .message::before {
+        position: absolute;
+        content: '';
+        border: 10px solid transparent;
+        border-top: 10px solid rgb(0, 86, 87);
+        border-top-left-radius: 5px;
+        left: -9px;
+        bottom: -6px;
+    }
 
-                & .path {
-                    stroke: hsl(210, 70, 75);
-                    stroke-linecap: round;
-                    animation: dash 1.5s ease-in-out infinite;
-                }
+    .messageBody {
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        font-size: medium;
+    }
 
-            }
+    @keyframes shake {
+        0% {
+            transform: translate(1px, 1px) rotate(0deg);
+        }
 
-            @keyframes rotate {
-                100% {
-                    transform: rotate(360deg);
-                }
-            }
+        10% {
+            transform: translate(-1px, -2px) rotate(-1deg);
+        }
 
-            @keyframes dash {
-                0% {
-                    stroke-dasharray: 1, 150;
-                    stroke-dashoffset: 0;
-                }
+        20% {
+            transform: translate(-3px, 0px) rotate(1deg);
+        }
 
-                50% {
-                    stroke-dasharray: 90, 150;
-                    stroke-dashoffset: -35;
-                }
+        30% {
+            transform: translate(3px, 2px) rotate(0deg);
+        }
 
-                100% {
-                    stroke-dasharray: 90, 150;
-                    stroke-dashoffset: -124;
-                }
-            }
+        40% {
+            transform: translate(1px, -1px) rotate(1deg);
+        }
 
+        50% {
+            transform: translate(-1px, 2px) rotate(-1deg);
+        }
+
+        60% {
+            transform: translate(-3px, 1px) rotate(0deg);
+        }
+
+        70% {
+            transform: translate(3px, 1px) rotate(-1deg);
+        }
+
+        80% {
+            transform: translate(-1px, -1px) rotate(1deg);
+        }
+
+        90% {
+            transform: translate(1px, 2px) rotate(0deg);
+        }
+
+        100% {
+            transform: translate(1px, -2px) rotate(-1deg);
         }
     }
+
+    @keyframes scale{
+        0% {
+            transform: scale(25%);
+        }
+
+        50% {
+            transform: scale(50%);
+        }
+
+        90% {
+            transform: scale(25%);
+        }
+
+        100% {
+            transform: scale(0%);
+        }
+    }
+}
+
 }

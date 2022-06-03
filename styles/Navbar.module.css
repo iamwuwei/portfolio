@@ -1,7 +1,7 @@
 .navbar {
     left: 0;
     height: 56px;
-    background-color: rgb(32, 32, 35);
+    background-color: var(--color-primary-nav-background);
     z-index: 2000;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .name {
-    color: aliceblue;
+    color: var(--color-primary-font);
     display: flex;
     align-items: center;
     height: auto;
@@ -78,7 +78,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: rgb(32, 32, 35);
+    background-color: var(--color-primary-nav-background);
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
@@ -88,7 +88,7 @@
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: white;
+    color: var(--color-primary-font);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -96,7 +96,7 @@
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: rgb(49, 49, 52)
+    background-color: var(--color-primary-hover);
 }
 
 /* Show the dropdown menu on hover */
@@ -147,11 +147,11 @@
 }
 
 input:checked+.slider {
-    background-color: rgb(49, 49, 52);
+    background-color: var(--color-primary-background);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px rgb(49, 49, 52);
+    box-shadow: 0 0 1px var(--color-primary-background);
 }
 
 input:checked+.slider:before {

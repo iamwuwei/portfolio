@@ -30,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: rgb(32, 32, 35);
+	background-color: var(--color-primary-background);
 }
 ol, ul {
 	list-style: none;
@@ -46,4 +46,26 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+:root{
+	--color-primary-background:#007aff47;
+	--color-primary-nav-background:#8bcbe8;
+	--color-sub-decoration: rgba(0,0,0, 0.25);
+	--color-sub-background: transparent;
+	--color-primary-button: #55c2da;
+	--color-primary-font:black;
+	--color-primary-hover:#007aff47	;
+	--color-primary-skill:#55c2da;
+	--color-primary-border:#ffffff78;
+}
+[data-theme='dark']{
+	--color-primary-background:rgb(32, 32, 35);
+	--color-primary-nav-background:rgb(32, 32, 35);
+	--color-sub-decoration: #313134;
+	--color-sub-background: #313134;
+	--color-primary-button: #5465ff;
+	--color-primary-font:white;
+	--color-primary-hover:rgb(49, 49, 52);
+	--color-primary-skill:#5465ff;
+	--color-primary-border:#ccc;
 }

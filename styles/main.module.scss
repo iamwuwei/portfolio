@@ -10,7 +10,7 @@ $breakpoints: (
 }
 
 .main {
-    color: white;
+    color: var(--color-primary-font);
     padding: 0 16px;
     min-height: 100vh;
     display: flex;
@@ -36,10 +36,9 @@ $breakpoints: (
             margin: 5px 0;
 
             h1 {
-                text-decoration: solid underline rgb(49, 49, 52) 4px;
+                text-decoration: solid underline var(--color-sub-decoration) 4px;
                 text-decoration-line: underline;
-                text-decoration-color: rgb(49, 49, 52
-                );
+                text-decoration-color: var(--color-sub-decoration);
             text-decoration-thickness: 4px;
             text-underline-offset: 5px;
 
@@ -56,6 +55,7 @@ $breakpoints: (
         }
         .about{
             line-height: 1.6;
+            width: 100%;
         }
 
         .buttonRow {
@@ -65,8 +65,8 @@ $breakpoints: (
 
             .btn {
                 text-decoration: none;
-                color: white;
-                background-color: #5465ff;
+                color: var(--color-primary-font);
+                background-color: var(--color-primary-button);
                 padding: 0 40px;
                 height: 40px;
                 display: flex;
@@ -93,6 +93,7 @@ $breakpoints: (
     }
     @include mq() {
         max-width: 732px;
+        width: 100%;
     }
     
     @include mq(sm) {

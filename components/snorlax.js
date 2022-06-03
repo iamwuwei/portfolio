@@ -10,7 +10,7 @@ function easeOutCirc(x) {
 const Snorlax = () => {
   const [isContainerVisible, setContainerVisible] = useState(false)
   const refContainer = useRef()
-  const [containerHeight, setContainerHeight] = useState(450)
+  const [containerHeight, setContainerHeight] = useState(400)
   const [renderer, setRenderer] = useState()
   const [_camera, setCamera] = useState()
   const [scale, setScale] = useState(1)
@@ -55,6 +55,9 @@ const Snorlax = () => {
       const controls = new OrbitControls(camera, renderer.domElement)
       controls.autoRotate = true
       controls.target = target
+      // to disable zoom
+      controls.enableZoom = false;
+
       setControls(controls)
 
       //set scene
@@ -129,9 +132,9 @@ const Snorlax = () => {
 
     }
     else {
-      if(isSnowing)
+      if (isSnowing)
         clearInterval(isSnowing)
-      if(isLinkSnowing)
+      if (isLinkSnowing)
         clearInterval(isLinkSnowing)
     }
   }, [isContainerVisible])

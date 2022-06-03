@@ -2,29 +2,71 @@ import { useState } from 'react';
 import styles from '../styles/contact.module.scss'
 
 const Contact = () => {
-    const [form, setForm] = useState({ "name": "", "email": "", "message": "" });
+    const [form, setForm] = useState({ "name": "", "email": "", "message": "" })
     const [loading, setLoading] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        await fetch('/api/submitContact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(form),
-        }).then((result) => {
-            if (result.status != 200) {
-                result.json().then(data => { console.log(data.message) })
-            }
+        if(!validateInput()){
+            await setTimeout(() => {
+                alert(alertMsg)
+                setLoading(false)
+                setAlertMsg("")
+            }, 1000)
+            return
+        }
+        if (validateEmail(form.email)) {
+            await fetch('/api/submitContact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form),
+            }).then((result) => {
+                if (result.status != 200) {
+                    result.json().then(data => { console.log(data.message) })
+                }
 
-        }).catch((err) => {
-            console.log(err)
-        })
-        await setTimeout(()=>{ setLoading(false) }, 2000);
+            }).catch((err) => {
+                console.log(err)
+            })
+
+            await setTimeout(() => { setLoading(false) }, 2000)
+        }
+        else {
+            await setTimeout(() => {
+                alert("Invalid email address.")
+                setLoading(false)
+            }, 1000)
+        }
     }
     const handleFormChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
+    }
+
+    const validateEmail = (emailId) => {
+        var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if (emailId.match(mailformat)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    const validateInput = () => {
+        if (form.name.length <= 0) {
+            setAlertMsg(alertMsg += "please input your name.\n")
+        }
+        if (form.email.length <= 0) {
+            setAlertMsg(alertMsg += "please input your email.\n")
+        } 
+        if (form.message.length <= 0) {
+            setAlertMsg(alertMsg += "please input message.\n")
+        }
+        if(alertMsg !== "")
+            return false
+        return true
     }
     return (
         <div className={styles.contactContainer}>

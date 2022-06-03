@@ -10,7 +10,7 @@ function easeOutCirc(x) {
 const Snorlax = () => {
   const [isContainerVisible, setContainerVisible] = useState(false)
   const refContainer = useRef()
-  const [containerHeight, setContainerHeight] = useState(400)
+  const [containerHeight, setContainerHeight] = useState(450)
   const [renderer, setRenderer] = useState()
   const [_camera, setCamera] = useState()
   const [scale, setScale] = useState(1)
@@ -189,7 +189,7 @@ const Snorlax = () => {
   }
 
   return (
-    <div ref={refContainer} style={{ 'height': `${containerHeight}px`, position: 'relative' }}></div>
+    <div ref={refContainer} style={{'width':'100%', 'height': `${containerHeight}px`, position: 'relative' }}></div>
   )
 }
 

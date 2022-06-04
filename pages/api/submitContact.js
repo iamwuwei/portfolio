@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    await fetch('http://localhost:3002/home/contact', {
+    await fetch(`${process.env.API_PATH}/home/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +21,6 @@ export default async function handler(req, res) {
         res.status(500).send({ message: "err" })
       res.status(200).end()
     }).catch((err) => {
-      console.log("failed")
       res.status(500).send({ message: err })
     })
   }
